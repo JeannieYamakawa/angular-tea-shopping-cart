@@ -5,24 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tea Shopping!</title>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.css">
-    <link rel="stylesheet" href="style.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
     <script src = './js/app.js'charset="UTF-8"></script>
     <script src = './js/services.js'charset="UTF-8"></script>
     <script src = './js/directives.js'charset="UTF-8"></script>
+
+    <!-- the JS function for the meter references the stylesheet and creates a jQuery element-->
+    <link rel="stylesheet" href="style.css">
+    <script src = './js/caffmeter.js'charset="UTF-8"></script>
     <!-- controllers depend on everything so theyre on the bottom. -->
     <script src = './js/controllers.js'charset="UTF-8"></script>
+
 </head>
+
+
 <body ng-app='teashopping'>
     <h1>Jeannie's Tea Store</h1>
 
-    <div ng-view></div>
+<!--<div ng-view></div> -->
 
 
 
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.js"></script>
+
+<!-- controller div, take out! -->
+<div ng-controller='HomeController'>
+    <div >
+        <input class='searchBar' ng-model='nameSearch' type="text" placeholder='Search teas by...'>
+    </div>
+    <div >
+        <span>Sort By:</span>
+
+        <select class="dropdown" name="dropdown" ng-model='categorySearch'>
+            <option value="" selected hidden />
+                    <option value="dark">Dark</option>
+                    <option value="cold">Cold</option>
+                    <option value="awesome">Awesome</option>
+                    <option value="dry">Dry</option>
+                    <option value="hot">Hot</option>
+                    <option value="awesome">Awesome</option>
+                    <option value="summer">Summer</option>
+                    <option value="winter">Winter</option>
+                    <option value="spring">Spring</option>
+                    <option value="lucid">Lucid</option>
+                    <option value="warm">Warm</option>
+
+        </select>
+    </div>
+
+
+    <table>
+    <tr class = 'ui segment' ng-repeat='tea in teas.teas | filter:categorySearch | filter: nameSearch | orderBy: priceSort'>
+        <td>
+            <img src="{{tea.imageUrl}}" alt="tea photo">
+        </td>
+        <td>
+            <h3>{{tea.name}}
+                <span class='pull-right'>
+                    Quantity:
+                    <select ng-model='quantity'>
+                        <option ng-repeat='qty in [2,3,4,5,6,7,8,9,10]'>{{qty}}</option>
+                    </select>
+                    <button type='button' name='button' class='btn btn-warning' ng-click='teas.addToBag(tea,quantity)'>Add To Bag</button>
+                </span>
+            </h3>
+            <p>
+                <strong>Price:</strong> {{tea.price/100 | currency}}
+            </p>
+            <p>
+                <div class='caffeine-selection'>
+                    <h4>Caffeine</h4>
+                    mg/serving: {{tea.caffeineScale}}
+                    <caffeine-meter caffeinemg='tea.caffeineScale' id='tea._id'></caffeine-meter>
+                </div>
+            </p>
+        </td>
+    </tr>
+    </table>
+
+
+<!-- controller div,take out! -->
+</div>
+
+
+
+    <!-- <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.js"></script> -->
 </body>
 </html>

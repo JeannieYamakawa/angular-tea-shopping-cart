@@ -21,9 +21,9 @@ app.config(function($routeProvider, $locationProvider){
                 templateUrl: 'partials/home.html',
                 controller: 'HomeController'
             })
-            .when('/cart', {
-                templateUrl:'partials/cartresults.html',
-                controller: 'CartController'
-            })
+            // .when('/cart', {
+            //     templateUrl:'partials/cartresults.html',
+            //     controller: 'CartController'
+            // })
 
 });
