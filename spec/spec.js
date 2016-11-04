@@ -1,5 +1,5 @@
 describe('angular tea shopping cart app', function() {
-        fit('should display image, caffeine scale, ingredients, rating', function() {
+        it('should display image, caffeine scale, ingredients, rating', function() {
             browser.get('http://localhost:8000');
             var firstTea =  element( by.repeater( 'tea in teas.teas' ).row(0) )
 
@@ -15,8 +15,10 @@ describe('angular tea shopping cart app', function() {
 
         });
 
-        it('it should display price in currency', function() {
+        fit('it should display price in currency', function() {
             browser.get('http://localhost:8000');
+            var firstPrice = element( by.repeater( 'tea in teas.teas' ).row(0).column('tea.price') );
+            expect( firstPrice.getText() ).toContain( '$15.40' );
 
         });
 
