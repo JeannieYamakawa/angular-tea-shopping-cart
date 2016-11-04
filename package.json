@@ -1,0 +1,11 @@
+{
+  "name": "angular-shopping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "conf.js",
+  "scripts": {
+    "test":  "protractor conf.js"
+  },
+  "author": "Jeannie Yamakawa <jkyamakawa@gmail.com>",
+  "license": "ISC"
+}
