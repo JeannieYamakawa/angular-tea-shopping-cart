@@ -68,31 +68,36 @@ describe('angular tea shopping cart app', function() {
 
 
         it('it should multiply the quantity by the price and display as subtotal', function() {
-
+            browser.get('http://localhost:8000/cart');
         });
 
 
         it('it should have an edit quantity button', function() {
+            browser.get('http://localhost:8000/cart');
 
         });
 
 
         it('it should change the edit button text to say save when clicked', function() {
+            browser.get('http://localhost:8000/cart');
 
         });
 
 
         it('it should update the quantity, subtotal price, and total price when save is clicked', function() {
+            browser.get('http://localhost:8000/cart');
 
         });
 
 
         it('it should have a button that removes the tea from the cart upon click', function() {
+            browser.get('http://localhost:8000/cart');
 
         });
 
 
         it('it should update quantity, subtotal price, and total price when item deleted from cart', function() {
+            browser.get('http://localhost:8000/cart');
 
         });
 
