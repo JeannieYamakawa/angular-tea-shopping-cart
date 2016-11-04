@@ -15,7 +15,7 @@ describe('angular tea shopping cart app', function() {
 
         });
 
-        fit('it should display price in currency', function() {
+        it('it should display price in currency', function() {
             browser.get('http://localhost:8000');
             var firstPrice = element( by.repeater( 'tea in teas.teas' ).row(0).column('tea.price') );
             expect( firstPrice.getText() ).toContain( '$15.40' );
@@ -23,8 +23,10 @@ describe('angular tea shopping cart app', function() {
         });
 
 
-        it('it should display quantity dropdown', function() {
+        fit('it should display quantity dropdown', function() {
             browser.get('http://localhost:8000');
+            var firstQuantity = element( by.repeater( 'tea in teas.teas' ).row(0) );
+            expect( firstQuantity.getText() ).toContain( 'Quantity' );
 
         });
 
