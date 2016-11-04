@@ -1,5 +1,5 @@
-uses jQuery and changes the style of the elements with classes below.
-need the var newVal to be equal to the /180
+// uses jQuery and changes the style of the elements with classes below.
+// need the var newVal to be equal to the tea's caffeine value as a value/180
 
 
 setTimeout(function() {
