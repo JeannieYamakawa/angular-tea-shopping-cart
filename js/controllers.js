@@ -1,4 +1,4 @@
-// 
+//
 // app.controller('HomeController', ['$scope', '$http', '$routeParams', '$location', 'omdbSearch', function($scope, $http, $routeParams, $location, omdbSearch){
 //     $scope.booyah ='booyah';
 //
@@ -17,3 +17,15 @@
 //         var movies = stuff.data.Search;
 //     })
 // }])
+
+
+app.controller('HomeController', ['$scope',
+'$http',
+'$location',
+// 'cartPersistence',
+function($scope, $http, $location
+    // , cartPersistence
+){
+
+    $scope.thisbooyah = 'wiring is working!'
+}])
