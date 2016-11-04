@@ -1,2 +1,34 @@
 
-<div ng-model='booyah'>{{thisbooyah}} asdsad</div>
+<table>
+<tr class = 'ui segment' ng-repeat='tea in teas.teas | filter:categorySearch | filter: nameSearch | orderBy: priceSort'>
+    <td>
+        <img src="{{tea.imageUrl}}" alt="tea photo">
+    </td>
+    <td>
+        <h3>{{tea.name}}
+            <span class='pull-right'>
+                Quantity:
+                <select ng-model='quantity'>
+                    <option ng-repeat='qty in [2,3,4,5,6,7,8,9,10]'>{{qty}}</option>
+                </select>
+                <button type='button' name='button' class='btn btn-warning' ng-click='teas.addToBag(tea,quantity)'>Add To Bag</button>
+            </span>
+        </h3>
+        <p>
+            <strong>Price:</strong> {{tea.price/100 | currency}}
+        </p>
+        <p>
+            <div class='caffeine-selection'>
+                <h4>Caffeine</h4>
+                mg/serving: {{tea.caffeineScale}}
+                <caffeine-meter caffeinemg='tea.caffeineScale' id='tea._id'></caffeine-meter>
+            </div>
+        </p>
+    </td>
+
+
+
+
+
+</tr>
+</table>
