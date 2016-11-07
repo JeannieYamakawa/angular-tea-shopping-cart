@@ -23,7 +23,10 @@
         <input class='searchBar' ng-model='nameSearch' type="text" placeholder='Search teas by...'>
     </span>
     <span class='col-xs-3'>
-            <input ng-click="checkoutClicked()" class='btn btn-default' type='button' value='Checkout | Bag:___number'>
+
+            <button ng-if="!numItemsInBag" ng-click="checkoutClicked()" class='btn btn-default' type='button' > Cart Is Empty.</button>
+            <button ng-if="numItemsInBag" ng-click="checkoutClicked()" class='btn btn-default' type='button' >Checkout | Cart: {{numItemsInBag}}</button>
+
     </span>
 </div>
 

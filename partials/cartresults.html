@@ -1,4 +1,6 @@
-<button ng-click='consoleLog()'>click me</button>
+<!-- <button ng-click='consoleLog()'>click me</button> -->
+<div>Your Shopping Cart:</div>
+<div align='right'> Total: {{ cart.overallTotal}}</div>
 <div ng-repeat='tea in cart.teas'></div>
 
 
@@ -21,10 +23,11 @@
     </tr>
 <tr class = 'ui container' ng-repeat='tea in cart.teas'>
     <td>
+        <h3>{{tea.name}}
+
+
+        </h3>
         <img src="{{tea.imageUrl}}" alt="tea photo">
-    </td>
-    <td>
-        <h3>{{tea.name}}</h3>
 
         <p>
             <div class='caffeine-selection'>
@@ -40,6 +43,30 @@
             <strong>Rating:</strong>
             {{tea.rating}}
         </p>
+    </td>
+    <td>
+        <p>{{tea.qty}}</p>
+
+
+    </td>
+    <td>
+        <p>{{tea.subtotal | currency: '$'}}</p>
+
+
+    </td>
+    <td>
+        <button ng-click='editClicked()'>edit</button>
+
+        <span ng-show='showEdit' class='pull-right'>
+            Update Quantity:
+            <select ng-model='tea.quantity'>
+                <option ng-repeat='qty in [1,2,3,4,5,6,7,8,9,10]' value='{{qty}}' >{{qty}}</option>
+            </select>
+            <button type='button' name='button' class='btn btn-warning' ng-click='updateCart(tea.name, tea.price, tea.imageUrl, tea.caffeineScale, tea.ingredients, tea.rating, tea.quantity)'>Update Quantity</button>
+        </span>
+
+        <button ng-click='removeFromCart()'>remove</button>
+
     </td>
 </tr>
 </table>

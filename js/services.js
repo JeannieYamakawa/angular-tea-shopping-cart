@@ -16,7 +16,7 @@ app.service('cartPersist', ['$http', function($http){
         if(!qty || qty == ''){
             this.current.qty=1;
         }else{
-            this.current.qty = parseInt(qty);
+            this.current.qty = parseFloat(qty);
         }
         this.current.name = name;
         this.current.caffeine = caffeine;
@@ -25,7 +25,7 @@ app.service('cartPersist', ['$http', function($http){
         this.current.imageUrl = imageUrl;
         this.current.price = price/100;
         console.log(this.current, 'this.current after storeValues runs');
-        this.current.subtotal = parseInt(this.current.price) * parseInt(this.current.qty);
+        this.current.subtotal = parseFloat(this.current.price) * parseFloat(this.current.qty);
         return this.updateCart(this.current);
     }
 
@@ -39,11 +39,14 @@ app.service('cartPersist', ['$http', function($http){
                 cartTeas[0].name = object.name;
                 cartTeas[0].qty = object.qty;
                 cartTeas[0].price = object.price;
+                console.log(cartTeas[0].price);
                 cartTeas[0].caffeineScale=object.caffeine;
                 cartTeas[0].imageUrl = object.imageUrl;
                 cartTeas[0].ingredients = object.ingredients;
                 cartTeas[0].rating = object.rating;
-                cartTeas[0].subtotal = parseInt(cartTeas[0].qty) * parseInt(cartTeas[0].price);
+                cartTeas[0].subtotal = parseFloat(cartTeas[0].qty) * parseFloat(cartTeas[0].price);
+                console.log(cartTeas[0].subtotal);
+
                 this.cart.overallTotal += cartTeas[0].subtotal;
                 this.numItemsInBag = 1;
             }else{
@@ -54,19 +57,21 @@ app.service('cartPersist', ['$http', function($http){
                         //if it exists in cart already, update its quantity and subtotal
                     if(matchingTea.length>0){
                         matchingTea[0].qty += object.qty;
-                        matchingTea[0].subtotal = parseInt(matchingTea[0].qty) * parseInt(matchingTea[0].price)
+                        matchingTea[0].subtotal = parseFloat(matchingTea[0].qty) * parseFloat(matchingTea[0].price)
                     }else{
                         var newObject ={};
                     newObject.name = object.name;
                     newObject.qty = object.qty;
                     newObject.price = object.price;
+                    console.log(newObject.price, 'newObject price');
                     newObject.caffeineScale=object.caffeine;
                     newObject.ingredients = object.ingredients;
                     newObject.imageUrl = object.imageUrl;
                     newObject.rating = object.rating;
-                    newObject.subtotal = parseInt(newObject.qty) * parseInt(newObject.price);
+                    newObject.subtotal = parseFloat(newObject.qty) * parseFloat(newObject.price);
                     this.cart.teas.push(newObject);
                     this.cart.overallTotal += newObject.subtotal;
+                    console.log(newObject.subtotal, 'newObject subtotal');
                     this.numItemsInBag = this.cart.teas.length;
                     console.log(newObject, this.cart.teas);
                     }

@@ -12,15 +12,18 @@ app.controller('HomeController', ['$scope','$http', '$location', 'cartPersist',/
 function($scope, $http, $location, cartPersist // , caffeineMeter
 ){
 
+
     //calls the service storeValues function.
     $scope.updateCart = function(name, price, imageUrl, caffeine, ingredients, rating, qty){
+        $scope.numItemsInBag = cartPersist.numItemsInBag + 1;
         cartPersist.storeValues(name, price, imageUrl, caffeine, ingredients, rating, qty);
     }
 
     $scope.checkoutClicked = function(){
         $location.path('/cart')
+        $scope.numItemsInBag = cartPersist.numItemsInBag
     }
-    $scope.nums = [2,3,4,5,6,7,8,9,10]
+
 
 
     $scope.teas = {};
@@ -167,10 +170,22 @@ function($scope, $http, $location, cartPersist // , caffeineMeter
 
     $scope.updateCart = function(name, price, imageUrl, caffeine, ingredients, rating, qty){
         cartPersist.storeValues(name, price, imageUrl, caffeine, ingredients, rating, qty);
+        $scope.showEdit = !$scope.showEdit;
     }
 
     $scope.consoleLog = function(){
         console.log($scope.cart.teas);
+    }
+    $scope.showEdit = false;
+    $scope.editClicked = function(){
+        console.log('edit clicked');
+        $scope.showEdit= !$scope.showEdit;
+    }
+
+
+    $scope.removeFromCart = function(){
+        console.log('Removing from cart!');
+        
     }
 }]);
 
