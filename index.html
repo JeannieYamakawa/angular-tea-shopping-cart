@@ -34,13 +34,15 @@
 
 <!-- controller div, take out! -->
 <div ng-controller='HomeController'>
-<div class='ui container'>
+
+<!-- header bar -->
+<div align='center'class='ui container'>
 
     <span >
-        <span>Sort By:</span>
+        <span>Search By Category:</span>
 
         <select class="dropdown" name="dropdown" ng-model='categorySearch'>
-            <option value="" selected hidden />
+            <option value=""  />
                     <option value="dark">Dark</option>
                     <option value="cold">Cold</option>
                     <option value="awesome">Awesome</option>
@@ -63,16 +65,21 @@
     </span>
 </div>
 
-    <table >
+<!-- end of header bar -->
+
+<!-- start of table -->
+    <table  align="center">
         <tr class='table-head'>
-            <th class='table-head'>
+            <th class='table-head margin1'>
                 Tea
             </th >
-            <th class='table-head'>
-                Information
+
+            <th class='table-head '>
+
+                <span class='margin1'> Information</span>
 
 
-                <span class='pull-right'>Sort By Price:
+                <span class='margin1 pull-right '>Sort By Price:
                     <select ng-model='priceSort'>
                         <option value='price'>Lowest</option>
                         <option value=-price>Highest</option>

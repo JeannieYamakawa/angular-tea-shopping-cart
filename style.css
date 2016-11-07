@@ -1,5 +1,17 @@
+.margin1{
+    margin: 1vh;
+}
 .pull-right{
     float:right;
+}
+.float-center{
+    float:center;
+}
+.margin2{
+    margin:2vh;
+}
+span{
+    margin: 3vh;
 }
 .table-head{
     border: 1px solid black;

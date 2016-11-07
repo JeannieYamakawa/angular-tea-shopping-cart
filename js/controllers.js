@@ -5,6 +5,11 @@ app.controller('HomeController', ['$scope',
 function($scope, $http, $location
     // , caffeineMeter
 ){
+    $scope.updateCart = function(var){
+
+   cartPersist.updateCart(var);
+    }
+
 
     $scope.thisbooyah = 'wiring is working!'
 
