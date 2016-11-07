@@ -14,7 +14,6 @@ function($scope, $http, $location, cartPersist // , caffeineMeter
 
     //calls the service storeValues function.
     $scope.updateCart = function(name, price, caffeine, ingredients, rating, qty){
-        console.log(qty, 'qty');
         cartPersist.storeValues(name, price, caffeine, ingredients, rating, qty);
     }
 
