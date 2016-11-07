@@ -1,45 +1,41 @@
-app.service('omdbSearch', ['$http', function($http){
-    // this.results = [];
-    this.search = function(query){
-        //line below assigns the parameter to a property on the service object
-        this.query = query
-    }
+//
+// first controller happens when user clicks add to cart. it just saves the query to the services object.
+//the services object will save the queries and update the cart array to be accessed publicly.
+// second controller accesses the values in the service ovbject, THEN in the callback actually does stuff with that info.
 
-
-    this.results = function(){
-        console.log(this.query);
-        //line below uses the saved query to search omdb
-        return $http.get('http://www.omdbapi.com/?s=' + this.query)
-    }
-
-}]);
 
 app.service('cartPersist', ['$http', function($http){
-    // incorrect storage, not necessary function below
-    // this.saveValues = function(name, qty, price){
-    //     this.cart.teas.name = name;
-    //     this.cart.teas.qty = qty;
-    //     this.cart.teas.price = price;
-    // }
+
+    this.storeValues = function(name, qty, price){
+        this.current.name = name;
+        this.current.qty = qty;
+        this.current.price = price/100;
+        this.updateCart();
+    }
 
     this.cart={};
     this.cart.teas=[]; //array of objects. each object contains a tea name, qty, price, and subtotal.
     this.cart.overallTotal=0;
     this.numItemsInBag=0;
 
-    this.updateCart = function(teaType, qty, price){
+
+
+
+
+
+    this.updateCart = function(){
         //happens when user presses add to cart button
         var newTeaObject={};
         this.cart.teas.forEach(function(tea){
-            if(tea.name==teaType){
+            if(tea.name==this.current.name){
                 //update existing tea quantity in cart
-                tea.qty = qty;
+                tea.qty = this.current.qty;
                 tea.subtotal = tea.price * tea.qty
             }else{
                 //populate the newTeaObject
-                newTeaObject.name = teaType;
-                newTeaObject.qty = qty;
-                newTeaObject.price = price/100;
+                newTeaObject.name = this.current.name;
+                newTeaObject.qty = this.current.qty;
+                newTeaObject.price = this.current.price;
                 newTeaObject.subtotal = newTeaObject.qty * newTeaObject.price;
                 this.cart.teas.push(newTeaObject);
                 this.cart.overallTotal += newTeaObject.subtotal;
@@ -53,6 +49,11 @@ app.service('cartPersist', ['$http', function($http){
         //adds this.cart.teas.subtotal number to this.cart.overallTotal number
         //this.numItemsInBag++ each time clicked
 
+    };
+
+
+    this.viewCartPageChange = function(){
+        $location.path('/results')
     };
 
 

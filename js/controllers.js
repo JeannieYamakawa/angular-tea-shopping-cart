@@ -1,17 +1,28 @@
-app.controller('HomeController', ['$scope',
-'$http',
-'$location',
-// 'caffeineMeter',
-function($scope, $http, $location
-    // , caffeineMeter
-){
-    $scope.updateCart = function(var){
+// when a user clicks update cart button on any repeated tea, a new quantity of that specific tea/price/name gets stored publicly available everywhere in the services array of tea objects.
+// when a user clicks to view cart, the services stored array of tea objects populates the page.
 
-   cartPersist.updateCart(var);
+
+
+// first controller happens when user clicks add to cart. it just saves the query to the services object.
+//the services object will save the queries and update the cart to be accessed publicly.
+// second controller accesses the values in the service ovbject, THEN in the callback actually does stuff with that info.
+
+
+app.controller('HomeController', ['$scope','$http', '$location', // 'caffeineMeter',
+function($scope, $http, $location // , caffeineMeter
+){
+
+    //calls the service storeValues function.
+    $scope.updateCart = function(name, qty, price){
+        //three parameters come from the ng-repeater. price will come as four digit number.
+        cartPersist.storeValues(name, qty, price);
+    }
+
+    $scope.viewCart = function(){
+        cartPersist.viewCartPageChange();
     }
 
 
-    $scope.thisbooyah = 'wiring is working!'
 
     $scope.teas = {};
     $scope.teas.teas = [
