@@ -1,34 +1,102 @@
-<!--
-<table>
-<tr class = 'ui segment' ng-repeat='tea in teas.teas | filter:categorySearch | filter: nameSearch | orderBy: priceSort'>
-    <td>
-        <img src="{{tea.imageUrl}}" alt="tea photo">
-    </td>
-    <td>
-        <h3>{{tea.name}}
-            <span class='pull-right'>
-                Quantity:
-                <select ng-model='quantity'>
-                    <option ng-repeat='qty in [2,3,4,5,6,7,8,9,10]'>{{qty}}</option>
-                </select>
-                <button type='button' name='button' class='btn btn-warning' ng-click='teas.addToBag(tea,quantity)'>Add To Bag</button>
-            </span>
-        </h3>
-        <p>
-            <strong>Price:</strong> {{tea.price/100 | currency}}
-        </p>
-        <p>
-            <div class='caffeine-selection'>
-                <h4>Caffeine</h4>
-                mg/serving: {{tea.caffeineScale}}
-                <caffeine-meter caffeinemg='tea.caffeineScale' id='tea._id'></caffeine-meter>
-            </div>
-        </p>
-    </td>
+
+<!-- header bar -->
+<div align='center'class='ui container'>
+
+    <span >
+        <span>Search By Category:</span>
+
+        <select class="dropdown" name="dropdown" ng-model='categorySearch'>
+            <option value=""  />
+                    <option value="dark">Dark</option>
+                    <option value="cold">Cold</option>
+                    <option value="awesome">Awesome</option>
+                    <option value="dry">Dry</option>
+                    <option value="hot">Hot</option>
+                    <option value="awesome">Awesome</option>
+                    <option value="summer">Summer</option>
+                    <option value="winter">Winter</option>
+                    <option value="spring">Spring</option>
+                    <option value="lucid">Lucid</option>
+                    <option value="warm">Warm</option>
+
+        </select>
+    </span>
+    <span >
+        <input class='searchBar' ng-model='nameSearch' type="text" placeholder='Search teas by...'>
+    </span>
+    <span class='col-xs-3'>
+            <input ng-click="checkoutClicked()" class='btn btn-default' type='button' value='Checkout | Bag:___number___'>
+    </span>
+</div>
+
+<!-- end of header bar -->
+
+<!-- start of table -->
+    <table  align="center">
+        <tr class='table-head'>
+            <th class='table-head margin1'>
+                Tea
+            </th >
+
+            <th class='table-head '>
+
+                <span class='margin1'> Information</span>
 
 
+                <span class='margin1 pull-right '>Sort By Price:
+                    <select ng-model='priceSort'>
+                        <option value='price'>Lowest</option>
+                        <option value=-price>Highest</option>
 
-
-
-</tr>
-</table> -->
+                    </select>
+                </span>
+            </th>
+        </tr>
+    <tr class = 'ui container' ng-repeat='tea in teas.teas | filter:categorySearch | filter: nameSearch | orderBy: priceSort'>
+        <td>
+            <img src="{{tea.imageUrl}}" alt="tea photo">
+        </td>
+        <td>
+            <h3>{{tea.name}}
+                <span class='pull-right'>
+                    Quantity:
+                    <select ng-model='tea.quantity'>
+                        <option ng-repeat='qty in [2,3,4,5,6,7,8,9,10]'>{{qty}}</option>
+                    </select>
+                    <button type='button' name='button' class='btn btn-warning' ng-click='updateCart(tea.name, tea.price, tea.caffeineScale, tea.ingredients, tea.rating, tea.quantity)'>Add To Bag</button>
+                </span>
+            </h3>
+            <p>
+                <strong>Price:</strong> {{tea.price/100 | currency}}
+            </p>
+            <p>
+                <div class='caffeine-selection'>
+                    <h4>Caffeine Scale {{tea.caffeineScale}} </h4>
+                    <!-- <caffeine-meter caffeinemg='tea.caffeineScale' id='tea._id'></caffeine-meter> -->
+                </div>
+            </p>
+            <p>
+                <strong>Ingredients:</strong>
+                {{tea.ingredients}}
+            </p>
+            <p>
+                <strong>Rating:</strong>
+                {{tea.rating}}
+            </p>
+            <p>
+                <span ng-if='tea.inStock==true'>
+                    <span ><strong>In Stock:</strong> Yes</span>
+                </span>
+                <span ng-if='tea.inStock==false'>
+                    <span ><strong>In Stock:</strong> No</span>
+                </span>
+            </p>
+            <p>
+                <strong>Categories:</strong>
+                <ul>
+                <li ng-repeat='category in tea.categories'>{{category}}</li>
+                </ul>
+            </p>
+        </td>
+    </tr>
+    </table>

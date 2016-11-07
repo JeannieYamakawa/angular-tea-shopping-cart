@@ -8,18 +8,18 @@
 // second controller accesses the values in the service ovbject, THEN in the callback actually does stuff with that info.
 
 
-app.controller('HomeController', ['$scope','$http', '$location', // 'caffeineMeter',
-function($scope, $http, $location // , caffeineMeter
+app.controller('HomeController', ['$scope','$http', '$location', 'cartPersist',// 'caffeineMeter',
+function($scope, $http, $location, cartPersist // , caffeineMeter
 ){
 
     //calls the service storeValues function.
-    $scope.updateCart = function(name, qty, price){
-        //three parameters come from the ng-repeater. price will come as four digit number.
-        cartPersist.storeValues(name, qty, price);
+    $scope.updateCart = function(name, price, caffeine, ingredients, rating, qty){
+        console.log(qty, 'qty');
+        cartPersist.storeValues(name, price, caffeine, ingredients, rating, qty);
     }
 
     $scope.viewCart = function(){
-        cartPersist.viewCartPageChange();
+        $location.path('/results')
     }
 
 
@@ -148,8 +148,44 @@ function($scope, $http, $location // , caffeineMeter
         "categories": ["spring", "warm","winter"]
     }
 ]
-
-
-
-    $scope.nextThing = ''
 }]);
+
+
+
+
+
+app.controller('CartController', ['$scope','$http', '$location', // 'caffeineMeter',
+function($scope, $http, $location // , caffeineMeter
+){
+    $scope.cart = cartPersist.cart;
+    $scope.cart.teas = cartPersist.cart.teas;
+    $scope.cart.overallTotal = cartPersist.cart.overallTotal;
+    $scope.numItemsInBag = cartPersist.numItemsInBag;
+
+
+
+
+    $scope.updateCart = function(name, price, qty){
+        cartPersist.storeValues(name, price, qty);
+    }
+
+    $scope.consoleLog = function(){
+        console.log(this.cart.teas);
+    }
+}]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
