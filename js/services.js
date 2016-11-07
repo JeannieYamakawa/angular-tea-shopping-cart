@@ -10,17 +10,19 @@ app.service('cartPersist', ['$http', function($http){
     this.cart.overallTotal=0;
     this.numItemsInBag=0;
 
-    this.storeValues = function(name, price, caffeine, ingredients, rating, qty){
+    this.storeValues = function(name, price, imageUrl, caffeine, ingredients, rating, qty){
+        console.log(qty, 'qty from beginning of first servvice funtion');
         this.current = {};
         if(!qty || qty == ''){
             this.current.qty=1;
         }else{
-            this.current.qty = qty;
+            this.current.qty = parseInt(qty);
         }
         this.current.name = name;
         this.current.caffeine = caffeine;
         this.current.ingredients = ingredients;
         this.current.rating = rating;
+        this.current.imageUrl = imageUrl;
         this.current.price = price/100;
         console.log(this.current, 'this.current after storeValues runs');
         this.current.subtotal = parseInt(this.current.price) * parseInt(this.current.qty);
@@ -38,6 +40,7 @@ app.service('cartPersist', ['$http', function($http){
                 cartTeas[0].qty = object.qty;
                 cartTeas[0].price = object.price;
                 cartTeas[0].caffeineScale=object.caffeine;
+                cartTeas[0].imageUrl = object.imageUrl;
                 cartTeas[0].ingredients = object.ingredients;
                 cartTeas[0].rating = object.rating;
                 cartTeas[0].subtotal = parseInt(cartTeas[0].qty) * parseInt(cartTeas[0].price);
@@ -59,6 +62,7 @@ app.service('cartPersist', ['$http', function($http){
                     newObject.price = object.price;
                     newObject.caffeineScale=object.caffeine;
                     newObject.ingredients = object.ingredients;
+                    newObject.imageUrl = object.imageUrl;
                     newObject.rating = object.rating;
                     newObject.subtotal = parseInt(newObject.qty) * parseInt(newObject.price);
                     this.cart.teas.push(newObject);

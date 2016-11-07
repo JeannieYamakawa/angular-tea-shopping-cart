@@ -13,14 +13,14 @@ function($scope, $http, $location, cartPersist // , caffeineMeter
 ){
 
     //calls the service storeValues function.
-    $scope.updateCart = function(name, price, caffeine, ingredients, rating, qty){
-        cartPersist.storeValues(name, price, caffeine, ingredients, rating, qty);
+    $scope.updateCart = function(name, price, imageUrl, caffeine, ingredients, rating, qty){
+        cartPersist.storeValues(name, price, imageUrl, caffeine, ingredients, rating, qty);
     }
 
     $scope.checkoutClicked = function(){
         $location.path('/cart')
     }
-
+    $scope.nums = [2,3,4,5,6,7,8,9,10]
 
 
     $scope.teas = {};
@@ -161,11 +161,12 @@ function($scope, $http, $location, cartPersist // , caffeineMeter
     $scope.cart.overallTotal = cartPersist.cart.overallTotal;
     $scope.numItemsInBag = cartPersist.numItemsInBag;
 
+    $scope.nums = [2,3,4,5,6,7,8,9,10]
 
 
 
-    $scope.updateCart = function(name, price, caffeine, ingredients, rating, qty){
-        cartPersist.storeValues(name, price, caffeine, ingredients, rating, qty);
+    $scope.updateCart = function(name, price, imageUrl, caffeine, ingredients, rating, qty){
+        cartPersist.storeValues(name, price, imageUrl, caffeine, ingredients, rating, qty);
     }
 
     $scope.consoleLog = function(){

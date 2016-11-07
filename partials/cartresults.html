@@ -1,2 +1,45 @@
 <button ng-click='consoleLog()'>click me</button>
 <div ng-repeat='tea in cart.teas'></div>
+
+
+<table  align="center">
+    <tr class='table-head'>
+        <th class='table-head margin1'>
+            Product
+        </th >
+
+        <th class='table-head '>
+
+            <span class='margin1'> Quantity</span>
+
+        </th>
+        <th class='table-head '>
+
+            <span class='margin1'> Sub-total</span>
+
+        </th>
+    </tr>
+<tr class = 'ui container' ng-repeat='tea in cart.teas'>
+    <td>
+        <img src="{{tea.imageUrl}}" alt="tea photo">
+    </td>
+    <td>
+        <h3>{{tea.name}}</h3>
+
+        <p>
+            <div class='caffeine-selection'>
+                <h4>Caffeine Scale {{tea.caffeineScale}} </h4>
+                <!-- <caffeine-meter caffeinemg='tea.caffeineScale' id='tea._id'></caffeine-meter> -->
+            </div>
+        </p>
+        <p>
+            <strong>Ingredients:</strong>
+            {{tea.ingredients}}
+        </p>
+        <p>
+            <strong>Rating:</strong>
+            {{tea.rating}}
+        </p>
+    </td>
+</tr>
+</table>
