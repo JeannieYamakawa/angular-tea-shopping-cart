@@ -1,3 +1,13 @@
+.pull-right{
+    float:right;
+}
+.table-head{
+    border: 1px solid black;
+}
+td{
+    border: 1px solid black;
+}
+
 $baseFontSize: 16;
 $green: #1abc9c;
 $yellow: #f1c40f;
