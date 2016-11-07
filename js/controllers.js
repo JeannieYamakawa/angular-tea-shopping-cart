@@ -17,8 +17,8 @@ function($scope, $http, $location, cartPersist // , caffeineMeter
         cartPersist.storeValues(name, price, caffeine, ingredients, rating, qty);
     }
 
-    $scope.viewCart = function(){
-        $location.path('/results')
+    $scope.checkoutClicked = function(){
+        $location.path('/cart')
     }
 
 
@@ -153,8 +153,8 @@ function($scope, $http, $location, cartPersist // , caffeineMeter
 
 
 
-app.controller('CartController', ['$scope','$http', '$location', // 'caffeineMeter',
-function($scope, $http, $location // , caffeineMeter
+app.controller('CartController', ['$scope','$http', '$location', 'cartPersist',// 'caffeineMeter',
+function($scope, $http, $location, cartPersist // , caffeineMeter
 ){
     $scope.cart = cartPersist.cart;
     $scope.cart.teas = cartPersist.cart.teas;
@@ -164,12 +164,12 @@ function($scope, $http, $location // , caffeineMeter
 
 
 
-    $scope.updateCart = function(name, price, qty){
-        cartPersist.storeValues(name, price, qty);
+    $scope.updateCart = function(name, price, caffeine, ingredients, rating, qty){
+        cartPersist.storeValues(name, price, caffeine, ingredients, rating, qty);
     }
 
     $scope.consoleLog = function(){
-        console.log(this.cart.teas);
+        console.log($scope.cart.teas);
     }
 }]);
 
