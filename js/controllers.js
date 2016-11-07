@@ -185,7 +185,21 @@ function($scope, $http, $location, cartPersist // , caffeineMeter
 
     $scope.removeFromCart = function(){
         console.log('Removing from cart!');
-        
+        console.log(this.tea.name);
+        var thisTeaName = this.tea.name
+        var arrOfTeas = cartPersist.cart.teas;
+        arrOfTeas.forEach(function(tea){
+            console.log(tea);
+            var teaName = tea.name;
+            var matchingIndex = teaName.indexOf(thisTeaName);
+            if (teaName.indexOf(thisTeaName) !==-1){
+                console.log('removing tea NOW');
+                cartPersist.cart.teas.splice(matchingIndex,1)
+                console.log(cartPersist.cart.teas, 'cart now updated');
+            }
+        })
+        //find that item in cart with matching name
+        //remove that item from cart
     }
 }]);
 

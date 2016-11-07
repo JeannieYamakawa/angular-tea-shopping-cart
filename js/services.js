@@ -56,7 +56,7 @@ app.service('cartPersist', ['$http', function($http){
                 console.log(matchingTea, 'MATCHING TEA');
                         //if it exists in cart already, update its quantity and subtotal
                     if(matchingTea.length>0){
-                        matchingTea[0].qty += object.qty;
+                        matchingTea[0].qty = object.qty;
                         matchingTea[0].subtotal = parseFloat(matchingTea[0].qty) * parseFloat(matchingTea[0].price)
                     }else{
                         var newObject ={};
@@ -70,7 +70,7 @@ app.service('cartPersist', ['$http', function($http){
                     newObject.rating = object.rating;
                     newObject.subtotal = parseFloat(newObject.qty) * parseFloat(newObject.price);
                     this.cart.teas.push(newObject);
-                    this.cart.overallTotal += newObject.subtotal;
+                    this.cart.overallTotal = newObject.subtotal;
                     console.log(newObject.subtotal, 'newObject subtotal');
                     this.numItemsInBag = this.cart.teas.length;
                     console.log(newObject, this.cart.teas);
