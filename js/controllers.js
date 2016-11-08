@@ -1,11 +1,5 @@
-// when a user clicks update cart button on any repeated tea, a new quantity of that specific tea/price/name gets stored publicly available everywhere in the services array of tea objects.
-// when a user clicks to view cart, the services stored array of tea objects populates the page.
 
 
-
-// first controller happens when user clicks add to cart. it just saves the query to the services object.
-//the services object will save the queries and update the cart to be accessed publicly.
-// second controller accesses the values in the service ovbject, THEN in the callback actually does stuff with that info.
 
 
 app.controller('HomeController', ['$scope','$http', '$location', 'cartPersist',
@@ -23,8 +17,6 @@ function($scope, $http, $location, cartPersist
         $location.path('/cart')
         $scope.numItemsInBag = cartPersist.numItemsInBag
     }
-
-
 
     $scope.teas = {};
     $scope.teas.teas = [
@@ -198,8 +190,6 @@ function($scope, $http, $location, cartPersist
                 // console.log(cartPersist.cart.teas, 'cart now updated');
             }
         })
-        //find that item in cart with matching name
-        //remove that item from cart
     }
 }]);
 
