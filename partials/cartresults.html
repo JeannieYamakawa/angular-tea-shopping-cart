@@ -7,10 +7,10 @@
 
 <span align='center'>
     <h2>Your Shopping Cart:</h2>
-    <h4>Total: {{ cart.overallTotal | currency: '$'}} </h4>
+    <h4 class ='overalltotal' >Total: {{ cart.overallTotal | currency: '$'}} </h4>
 </span>
 
-<p class="booyah">cart</p>
+<!-- <p class="booyah">cart</p> -->
 <table  class="table table-bordered" align="center">
     <thead>
         <tr >
@@ -70,10 +70,10 @@
             <td>
                 <span ng-show='showEdit' class='pull-right'>
                     Update Quantity:
-                    <select ng-model='tea.quantity'>
+                    <select class = 'hiddenupdate' ng-model='tea.quantity'>
                         <option ng-repeat='qty in [1,2,3,4,5,6,7,8,9,10]' value='{{qty}}' >{{qty}}</option>
                     </select>
-                    <button type='button' name='button' class='btn btn-warning' ng-click='updateCart(tea, tea.quantity)'>Update Quantity</button>
+                    <button type='button' name='button' class='btn btn-warning updatebutton' ng-click='updateCart(tea, tea.quantity)'>Update Quantity</button>
                 </span>
 
             </td>

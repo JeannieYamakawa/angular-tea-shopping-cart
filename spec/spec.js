@@ -147,7 +147,7 @@ describe('angular tea shopping cart app page two', function() {
         });
 
 
-        fit('it should multiply the quantity by the price and display as subtotal', function() {
+        it('it should multiply the quantity by the price and display as subtotal', function() {
             var teasDisplayed = element.all(by.css('.tearepeater') );
             var subtotals =  element.all(by.css('.subtotal'));
             var quantities = element.all(by.css('.quantity'));
@@ -158,16 +158,26 @@ describe('angular tea shopping cart app page two', function() {
         });
 
 
-        fit('it should have an edit quantity button for each item in cart', function() {
-            var teasDisplayed = element.all(by.css('.tearepeater') );
+        it('it should have an edit quantity button for each item in cart', function() {
             var editButtons = element.all(by.css('.edit'));
             expect(editButtons.count()).toBe(3);
+            expect(editButtons.first().getText()).toBe('edit');
         });
 
 
-
-        it('it should update the quantity, subtotal price, and total price when Update Quantity button clicked', function() {
-
+        fit('it should update the quantity, subtotal price, and total price when Update Quantity button clicked', function() {
+            var editButtons = element.all(by.css('.edit'));
+            var updateButton = element.all(by.css('.updatebutton')).first()
+            var subtotals =  element.all(by.css('.subtotal'));
+            var quantities = element.all(by.css('.quantity'));
+            var overallTotal = element(by.css('.overalltotal'));
+            editButtons.first().click()
+            var updateDropdown = element.all(by.css('.hiddenupdate')).first();
+            updateDropdown.sendKeys('9');
+            updateButton.click();
+            expect(quantities.first().getText()).toBe('9');
+            expect(subtotals.first().getText()).toBe('$138.60');
+            expect(overallTotal.getText()).toContain('$578.88');
         });
 
 
