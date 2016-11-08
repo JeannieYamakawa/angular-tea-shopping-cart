@@ -82,7 +82,7 @@ describe('angular tea shopping cart app', function() {
             expect(teasDisplayed.get(3).getText()).toContain('cream of tartar, cream of cream, kitchen scraps, flavorings')
             });
 
-        fit('it should sort teas by price, both lowest and highest', function() {
+        it('it should sort teas by price, both lowest and highest', function() {
             browser.get('http://localhost:8000');
             var lowest = element( by.cssContainingText('option', 'Lowest') );
 
@@ -102,10 +102,34 @@ describe('angular tea shopping cart app', function() {
 //-----------------on cart page-----------------
 //-----------------on cart page-----------------
 
+        fit('it should redirect when checkout button clicked', function() {
+            // browser.get('http://localhost:8000/#/cart');
+            // var empty = element(by.css('.empty'));
+            // expect(empty.getText()).toContain('Your cart is empty.')
+            browser.get('http://localhost:8000');
+            var firstQuantity = element( by.repeater( 'tea in teas.teas' ).row(0) );
+            var addButton = element.all(by.css('.adding')).first();
+            var secondAddButton = element.all(by.css('.adding')).get(1);
+            var quantityDropdown = element.all(by.css('.quantityopt')).first();
+            var secondQuantity = element.all(by.css('.quantityopt')).get(1);
+            var checkoutButton = element.all(by.css('.checkout')).first();
+
+            quantityDropdown.sendKeys('6');
+            secondQuantity.sendKeys('3');
+            addButton.click();
+            secondAddButton.click();
+
+            checkoutButton.click();
+            expect(  browser.getCurrentUrl()  ).toContain('cart')
+        });
+
+
+
+
         it('it should preserve quantity of teas in cart on second page', function() {
-            browser.get('http://localhost:8000/cart');
 
         });
+
 
         it('it should preserve quantity of teas in cart on second page', function() {
             browser.get('http://localhost:8000/cart');
