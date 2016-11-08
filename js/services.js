@@ -11,7 +11,7 @@ app.service('cartPersist', ['$http', function($http){
     this.numItemsInBag=0;
 
     this.storeValues = function(tea, qty){
-        console.log(tea, 'tea from store vals');
+        // console.log(tea, 'tea from store vals');
         if(!qty || qty === ''){
             tea.qty =1;
         }else{
@@ -22,7 +22,7 @@ app.service('cartPersist', ['$http', function($http){
     }
 
     this.updateCart = function(object){
-        console.log(object.subtotal,'object from second funct')
+        // console.log(object.subtotal,'object from second funct')
         var cartTeas = this.cart.teas;
         var newTotal;
         //if no teas in cart
@@ -33,26 +33,26 @@ app.service('cartPersist', ['$http', function($http){
         }else{
             //update existing tea qty with same name
             var matchingTea = cartTeas.filter(function(aTea){
-                console.log(aTea.name===object.name, 'asklakjsd match ');
+                // console.log(aTea.name===object.name, 'asklakjsd match ');
                 return (aTea.name===object.name)
             })
-            console.log(matchingTea, 'MATCHING TEA');
+            // console.log(matchingTea, 'MATCHING TEA');
             if(matchingTea.length>0){
                 matchingTea[0].qty = object.qty;
                 matchingTea[0].subtotal = parseFloat(matchingTea[0].qty) * parseFloat(matchingTea[0].price/100)
                 newTotal = cartTeas.map(function(tea1) {return tea1.subtotal})
                             .reduce(function(a,b) {return a + b;});
-                console.log(newTotal, 'newTotal1');
+                // console.log(newTotal, 'newTotal1');
                 this.cart.overallTotal = newTotal;
                 this.numItemsInBag = this.cart.teas.length;
                 //if no tea exists in cart with same name, below
             }else{
                 this.cart.teas.push(object);
-                console.log(this.cart.teas, 'this.cart.teas');
+                // console.log(this.cart.teas, 'this.cart.teas');
 
                 newTotal = cartTeas.map(function(tea1) {return tea1.subtotal})
                             .reduce(function(a,b) {return a + b;});
-                console.log(newTotal, 'newTotal2');
+                // console.log(newTotal, 'newTotal2');
 
                 this.cart.overallTotal = newTotal;
 
