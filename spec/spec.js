@@ -1,4 +1,4 @@
-describe('angular tea shopping cart app', function() {
+describe('angular tea shopping cart app homepage', function() {
         it('should display image, caffeine scale, ingredients, rating', function() {
             browser.get('http://localhost:8000');
             var firstTea =  element( by.repeater( 'tea in teas.teas' ).row(0) )
@@ -98,42 +98,47 @@ describe('angular tea shopping cart app', function() {
             expect(teasDisplayed.last().getText()).toContain('Prevenient herb tea');
             });
 
-//-----------------on cart page-----------------
-//-----------------on cart page-----------------
-//-----------------on cart page-----------------
 
         fit('it should redirect when checkout button clicked', function() {
-            // browser.get('http://localhost:8000/#/cart');
-            // var empty = element(by.css('.empty'));
-            // expect(empty.getText()).toContain('Your cart is empty.')
             browser.get('http://localhost:8000');
-            var firstQuantity = element( by.repeater( 'tea in teas.teas' ).row(0) );
             var addButton = element.all(by.css('.adding')).first();
-            var secondAddButton = element.all(by.css('.adding')).get(1);
             var quantityDropdown = element.all(by.css('.quantityopt')).first();
-            var secondQuantity = element.all(by.css('.quantityopt')).get(1);
             var checkoutButton = element.all(by.css('.checkout')).first();
 
             quantityDropdown.sendKeys('6');
-            secondQuantity.sendKeys('3');
             addButton.click();
-            secondAddButton.click();
 
             checkoutButton.click();
             expect(  browser.getCurrentUrl()  ).toContain('cart')
         });
+});
+
+describe('angular tea shopping cart app page two', function() {
+
+    beforeEach(function(){
+        browser.get('http://localhost:8000');
+        var addButton = element.all(by.css('.adding')).first();
+        var secondAddButton = element.all(by.css('.adding')).get(1);
+        var thirdAddButton = element.all(by.css('.adding')).get(3);
+        var quantityDropdown = element.all(by.css('.quantityopt')).first();
+        var secondQuantity = element.all(by.css('.quantityopt')).get(1);
+        var thirdQuantity = element.all(by.css('.quantityopt')).get(3)
+        var checkoutButton = element(by.css('.checkout'));
+        var teas = element.all(by.css('.tearepeat'));
+        quantityDropdown.sendKeys('6');
+        secondQuantity.sendKeys('3');
+        thirdQuantity.sendKeys('4');
+        addButton.click();
+        secondAddButton.click();
+        thirdAddButton.click();
+        checkoutButton.click();
+    });
 
 
-
-
-        it('it should preserve quantity of teas in cart on second page', function() {
-
-        });
-
-
-        it('it should preserve quantity of teas in cart on second page', function() {
-            browser.get('http://localhost:8000/cart');
-
+        fit('it should preserve quantity of teas in cart on second page', function() {
+            expect(browser.getCurrentUrl()).toContain('cart');
+            var teasDisplayed = element.all(by.css('.tearepeater') );
+            expect( teasDisplayed.first().getText() ).toContain('concentrated gluten');
         });
 
 

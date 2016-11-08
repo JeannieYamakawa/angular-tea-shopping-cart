@@ -10,8 +10,7 @@
     <h4>Total: {{ cart.overallTotal | currency: '$'}} </h4>
 </span>
 
-<div ng-repeat='tea in cart.teas'></div>
-
+<p class="booyah">cart</p>
 <table  class="table table-bordered" align="center">
     <thead>
         <tr >
@@ -32,7 +31,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat='tea in cart.teas'>
+        <tr class='tearepeater' ng-repeat='tea in cart.teas'>
             <td>
                 <h3>{{tea.name}}
 
