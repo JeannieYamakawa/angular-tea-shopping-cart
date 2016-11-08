@@ -27,8 +27,8 @@
 
     </span>
 
-    <span class="pull-right pricesort"> <strong>Sort By Price:</strong>
-          <select ng-model="priceSort">
+    <span class="pull-right"> <strong>Sort By Price:</strong>
+          <select class='pricesort' ng-model="priceSort">
                 <option value='price'>Lowest</option>
                 <option value=-price>Highest</option>
             </select>
@@ -54,7 +54,7 @@
         <img src="{{tea.imageUrl}}" alt="tea photo">
     </td>
     <td>
-        <h2>{{tea.name}}<h2>
+        <h2 class='teaname'>{{tea.name}}<h2>
             <h4>
             <span class='pull-right'>
                 Quantity:

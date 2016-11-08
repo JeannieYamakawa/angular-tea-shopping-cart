@@ -1,5 +1,5 @@
 describe('angular tea shopping cart app', function() {
-        fit('should display image, caffeine scale, ingredients, rating', function() {
+        it('should display image, caffeine scale, ingredients, rating', function() {
             browser.get('http://localhost:8000');
             var firstTea =  element( by.repeater( 'tea in teas.teas' ).row(0) )
 
@@ -15,7 +15,7 @@ describe('angular tea shopping cart app', function() {
 
         });
 
-        fit('it should display price in currency', function() {
+        it('it should display price in currency', function() {
             browser.get('http://localhost:8000');
             var firstPrice = element( by.repeater( 'tea in teas.teas' ).row(0).column('tea.price') );
             expect( firstPrice.getText() ).toContain( '$15.40' );
@@ -23,7 +23,7 @@ describe('angular tea shopping cart app', function() {
         });
 
 
-        fit('it should display quantity dropdown that updates cart', function() {
+        it('it should display quantity dropdown that updates cart', function() {
             browser.get('http://localhost:8000');
             var firstQuantity = element( by.repeater( 'tea in teas.teas' ).row(0) );
             var addButton = element.all(by.css('.adding')).first();
@@ -36,14 +36,14 @@ describe('angular tea shopping cart app', function() {
         });
 
 
-        fit('it should have whether tea in stock displayed as yes or no', function() {
+        it('it should have whether tea in stock displayed as yes or no', function() {
             browser.get('http://localhost:8000');
             var firstTeaInStock = element( by.repeater( 'tea in teas.teas' ).row(0) )
             expect( firstTeaInStock.getText() ).toContain( 'In Stock: Yes' );
         });
 
 
-        fit('it should add at least one tea to cart if addToCart button clicked with no quantity specified', function() {
+        it('it should add at least one tea to cart if addToCart button clicked with no quantity specified', function() {
             browser.get('http://localhost:8000');
             var firstQuantity = element( by.repeater( 'tea in teas.teas' ).row(0) );
             var secondQuantity = element( by.repeater( 'tea in teas.teas' ).row(1) );
@@ -58,7 +58,7 @@ describe('angular tea shopping cart app', function() {
             });
 
 
-        fit('it should filter teas from chosen dropdown option', function() {
+        it('it should filter teas from chosen dropdown option', function() {
             browser.get('http://localhost:8000');
             var categoryDropdown = element(by.css('.category'));
             var teasDisplayed = element.all( by.css( '.singletea' ) );
@@ -68,7 +68,7 @@ describe('angular tea shopping cart app', function() {
             expect(teasDisplayed.get(1).getText()).toContain('purina chow, flavorings, pepper, acorns, quality tallow')
             });
 
-        fit('it should display teas filtered by text in the search bar', function() {
+        it('it should display teas filtered by text in the search bar', function() {
             browser.get('http://localhost:8000');
             var searchBar = element(by.css('.searchBar'));
             var teasDisplayed = element.all( by.css( '.singletea' ) );
@@ -82,17 +82,18 @@ describe('angular tea shopping cart app', function() {
             expect(teasDisplayed.get(3).getText()).toContain('cream of tartar, cream of cream, kitchen scraps, flavorings')
             });
 
-        it('it should sort teas by price, both lowest and highest', function() {
+        fit('it should sort teas by price, both lowest and highest', function() {
             browser.get('http://localhost:8000');
-            var priceDropdown = element(by.css('.pricesort'));
-            var teasDisplayed = element.all( by.css( '.singletea' ) );
+            var lowest = element( by.cssContainingText('option', 'Lowest') );
 
-            priceDropdown.sendKeys('price');
+            lowest.click();
+            var teasDisplayed = element.all( by.css( '.singletea' ) );
             expect(teasDisplayed.first().getText()).toContain('Prevenient herb tea');
+            expect(teasDisplayed.get(2).getText()).toContain('Flexner veggie tea');
             expect(teasDisplayed.last().getText()).toContain('Incompactness syrup');
 
-            searchBar.clear();
-            priceDropdown.sendKeys('-price');
+            var highest = element( by.cssContainingText('option', 'Highest') );
+            highest.click();
             expect(teasDisplayed.first().getText()).toContain('Incompactness syrup');
             expect(teasDisplayed.last().getText()).toContain('Prevenient herb tea');
             });
@@ -100,6 +101,11 @@ describe('angular tea shopping cart app', function() {
 //-----------------on cart page-----------------
 //-----------------on cart page-----------------
 //-----------------on cart page-----------------
+
+        it('it should preserve quantity of teas in cart on second page', function() {
+            browser.get('http://localhost:8000/cart');
+
+        });
 
         it('it should preserve quantity of teas in cart on second page', function() {
             browser.get('http://localhost:8000/cart');
