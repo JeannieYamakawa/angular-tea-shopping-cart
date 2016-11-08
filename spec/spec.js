@@ -135,44 +135,62 @@ describe('angular tea shopping cart app page two', function() {
     });
 
 
+
+    //
+    // Expected 'Bayard stew
+    //   Caffeine Scale 244
+    //   Ingredients: concentrated gluten, jewelry, dill, beetle nut, toast
+    //   Rating: 1
+    //   6
+    //   $92.40
+    //   remove edit' to be 'askdjakdljsa'.
+
+
         fit('it should preserve quantity of teas in cart on second page', function() {
             expect(browser.getCurrentUrl()).toContain('cart');
             var teasDisplayed = element.all(by.css('.tearepeater') );
+            var subtotals =  element.all(by.css('.subtotal'));
+            var quantities = element.all(by.css('.quantity'));
             expect( teasDisplayed.first().getText() ).toContain('concentrated gluten');
+            expect(teasDisplayed.get(1).getText()).toContain("Ingredients: fennel, nutmeg leaves, parsley, cream of 'cream of cream', blarney");
+            expect(quantities.first().getText()).toBe('6');
+            expect(quantities.get(1).getText()).toBe('3');
+            expect(quantities.get(2).getText()).toBe('4');
         });
 
 
-        it('it should multiply the quantity by the price and display as subtotal', function() {
-            browser.get('http://localhost:8000/cart');
+        fit('it should multiply the quantity by the price and display as subtotal', function() {
+            var teasDisplayed = element.all(by.css('.tearepeater') );
+            var subtotals =  element.all(by.css('.subtotal'));
+            var quantities = element.all(by.css('.quantity'));
+            expect( teasDisplayed.first().getText() ).toContain('concentrated gluten');
+            expect (subtotals.first().getText()).toBe('$92.40');
+            expect(subtotals.get(1).getText()).toBe('$220.44');
+            expect(subtotals.get(2).getText()).toBe('$219.84');
         });
 
 
         it('it should have an edit quantity button', function() {
-            browser.get('http://localhost:8000/cart');
 
         });
 
 
         it('it should change the edit button text to say save when clicked', function() {
-            browser.get('http://localhost:8000/cart');
 
         });
 
 
         it('it should update the quantity, subtotal price, and total price when save is clicked', function() {
-            browser.get('http://localhost:8000/cart');
 
         });
 
 
         it('it should have a button that removes the tea from the cart upon click', function() {
-            browser.get('http://localhost:8000/cart');
 
         });
 
 
         it('it should update quantity, subtotal price, and total price when item deleted from cart', function() {
-            browser.get('http://localhost:8000/cart');
 
         });
 
