@@ -99,7 +99,7 @@ describe('angular tea shopping cart app homepage', function() {
             });
 
 
-        fit('it should redirect when checkout button clicked', function() {
+        it('it should redirect when checkout button clicked', function() {
             browser.get('http://localhost:8000');
             var addButton = element.all(by.css('.adding')).first();
             var quantityDropdown = element.all(by.css('.quantityopt')).first();
@@ -134,19 +134,7 @@ describe('angular tea shopping cart app page two', function() {
         checkoutButton.click();
     });
 
-
-
-    //
-    // Expected 'Bayard stew
-    //   Caffeine Scale 244
-    //   Ingredients: concentrated gluten, jewelry, dill, beetle nut, toast
-    //   Rating: 1
-    //   6
-    //   $92.40
-    //   remove edit' to be 'askdjakdljsa'.
-
-
-        fit('it should preserve quantity of teas in cart on second page', function() {
+        it('it should preserve quantity of teas in cart on second page', function() {
             expect(browser.getCurrentUrl()).toContain('cart');
             var teasDisplayed = element.all(by.css('.tearepeater') );
             var subtotals =  element.all(by.css('.subtotal'));
@@ -170,17 +158,15 @@ describe('angular tea shopping cart app page two', function() {
         });
 
 
-        it('it should have an edit quantity button', function() {
-
+        fit('it should have an edit quantity button for each item in cart', function() {
+            var teasDisplayed = element.all(by.css('.tearepeater') );
+            var editButtons = element.all(by.css('.edit'));
+            expect(editButtons.count()).toBe(3);
         });
 
 
-        it('it should change the edit button text to say save when clicked', function() {
 
-        });
-
-
-        it('it should update the quantity, subtotal price, and total price when save is clicked', function() {
+        it('it should update the quantity, subtotal price, and total price when Update Quantity button clicked', function() {
 
         });
 
