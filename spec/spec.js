@@ -2,24 +2,18 @@ describe('angular tea shopping cart app homepage', function() {
         it('should display image, caffeine scale, ingredients, rating', function() {
             browser.get('http://localhost:8000');
             var firstTea =  element( by.repeater( 'tea in teas.teas' ).row(0) )
-
-            // Returns the SPAN for the first cat's name.
-        // var firstCatName = element(by.repeater('cat in pets').row(0).column('cat.name'));
             var firstTitle = element( by.repeater( 'tea in teas.teas' ).row(0).column('tea.name') )
             var firstImageUrl = element( by.repeater( 'tea in teas.teas' ).row(0).column('tea.imageUrl') )
             var firstCaffeineScale = element( by.repeater( 'tea in teas.teas' ).row(0).column('tea.caffeineScale') )
             var firstIngredientsList = element( by.repeater( 'tea in teas.teas' ).row(0).column('tea.ingredients') )
             var firstRating = element( by.repeater( 'tea in teas.teas' ).row(0).column('tea.rating') )
             expect( firstTitle.getText() ).toContain( 'Bayard stew' );
-            // expect(  ).toBe( '1' );
-
         });
 
         it('it should display price in currency', function() {
             browser.get('http://localhost:8000');
             var firstPrice = element( by.repeater( 'tea in teas.teas' ).row(0).column('tea.price') );
             expect( firstPrice.getText() ).toContain( '$15.40' );
-
         });
 
 
@@ -112,6 +106,7 @@ describe('angular tea shopping cart app homepage', function() {
             expect(  browser.getCurrentUrl()  ).toContain('cart')
         });
 });
+
 
 describe('angular tea shopping cart app page two', function() {
 
