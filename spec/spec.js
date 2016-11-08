@@ -1,5 +1,5 @@
 describe('angular tea shopping cart app', function() {
-        it('should display image, caffeine scale, ingredients, rating', function() {
+        fit('should display image, caffeine scale, ingredients, rating', function() {
             browser.get('http://localhost:8000');
             var firstTea =  element( by.repeater( 'tea in teas.teas' ).row(0) )
 
@@ -15,7 +15,7 @@ describe('angular tea shopping cart app', function() {
 
         });
 
-        it('it should display price in currency', function() {
+        fit('it should display price in currency', function() {
             browser.get('http://localhost:8000');
             var firstPrice = element( by.repeater( 'tea in teas.teas' ).row(0).column('tea.price') );
             expect( firstPrice.getText() ).toContain( '$15.40' );
@@ -23,17 +23,24 @@ describe('angular tea shopping cart app', function() {
         });
 
 
-        fit('it should display quantity dropdown', function() {
+        fit('it should display quantity dropdown that updates cart', function() {
             browser.get('http://localhost:8000');
             var firstQuantity = element( by.repeater( 'tea in teas.teas' ).row(0) );
-            expect( firstQuantity.getText() ).toContain( 'Quantity' );
+            var addButton = element.all(by.css('.adding')).first();
+            var quantityDropdown = element.all(by.css('.quantityopt')).first();
+            var checkoutButton = element.all(by.css('.checkout')).first();
+
+            quantityDropdown.sendKeys('6')
+            addButton.click()
+            expect( checkoutButton.getText() ).toBe( 'Checkout | Cart: 1' );
 
         });
 
 
-        it('it should have whether tea in stock displayed as yes or no', function() {
+        fit('it should have whether tea in stock displayed as yes or no', function() {
             browser.get('http://localhost:8000');
-
+            var firstTeaInStock = element( by.repeater( 'tea in teas.teas' ).row(0) )
+            expect( firstTeaInStock.getText() ).toContain( 'In Stock: Yes' );
         });
 
 

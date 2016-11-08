@@ -22,8 +22,8 @@
         <input class='searchBar' ng-model='nameSearch' type="text" placeholder='Search teas by...'>
     </span>
     <span >
-            <button ng-if="!numItemsInBag" ng-click="checkoutClicked()" class='btn btn-default' type='button' > Cart Is Empty.</button>
-            <button ng-if="numItemsInBag" ng-click="checkoutClicked()" class='btn btn-success' type='button' >Checkout | Cart: {{numItemsInBag}}</button>
+            <button ng-if="!numItemsInBag" ng-click="checkoutClicked()" class='btn btn-default checkout' type='button' > Cart Is Empty.</button>
+            <button ng-if="numItemsInBag" ng-click="checkoutClicked()" class='btn btn-success checkout' type='button' >Checkout | Cart: {{numItemsInBag}}</button>
 
     </span>
 
@@ -58,10 +58,10 @@
             <h4>
             <span class='pull-right'>
                 Quantity:
-                <select ng-model='tea.quantity'>
+                <select class = 'quantityopt' ng-model='tea.quantity'>
                     <option ng-repeat='qty in [1,2,3,4,5,6,7,8,9,10]' value='{{qty}}' >{{qty}}</option>
                 </select>
-                <button type='button' name='button' class='btn btn-warning' ng-click='updateCart(tea, tea.quantity)'>Add To Cart</button>
+                <button type='button' name='button' class='btn btn-warning adding' ng-click='updateCart(tea, tea.quantity)'>Add To Cart</button>
             </span>
         </h4>
         <p>
