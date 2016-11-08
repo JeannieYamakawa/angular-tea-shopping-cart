@@ -84,7 +84,17 @@ describe('angular tea shopping cart app', function() {
 
         it('it should sort teas by price, both lowest and highest', function() {
             browser.get('http://localhost:8000');
+            var priceDropdown = element(by.css('.pricesort'));
+            var teasDisplayed = element.all( by.css( '.singletea' ) );
 
+            priceDropdown.sendKeys('price');
+            expect(teasDisplayed.first().getText()).toContain('Prevenient herb tea');
+            expect(teasDisplayed.last().getText()).toContain('Incompactness syrup');
+
+            searchBar.clear();
+            priceDropdown.sendKeys('-price');
+            expect(teasDisplayed.first().getText()).toContain('Incompactness syrup');
+            expect(teasDisplayed.last().getText()).toContain('Prevenient herb tea');
             });
 
 //-----------------on cart page-----------------
