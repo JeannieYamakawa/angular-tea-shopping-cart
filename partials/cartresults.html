@@ -1,6 +1,9 @@
 <!-- <button ng-click='consoleLog()'>click me</button> -->
+<div ng-show='cart.teas.length===0'>Your cart is empty.</div>
+<div ng-show='cart.teas.length>0'>
+
 <div>Your Shopping Cart:</div>
-<div align='right'> Total: {{ cart.overallTotal}}</div>
+<div > Total: {{ cart.overallTotal | currency: '$'}} </div>
 <div ng-repeat='tea in cart.teas'></div>
 
 
@@ -62,7 +65,7 @@
             <select ng-model='tea.quantity'>
                 <option ng-repeat='qty in [1,2,3,4,5,6,7,8,9,10]' value='{{qty}}' >{{qty}}</option>
             </select>
-            <button type='button' name='button' class='btn btn-warning' ng-click='updateCart(tea.name, tea.price, tea.imageUrl, tea.caffeineScale, tea.ingredients, tea.rating, tea.quantity)'>Update Quantity</button>
+            <button type='button' name='button' class='btn btn-warning' ng-click='updateCart(tea, tea.quantity)'>Update Quantity</button>
         </span>
 
         <button ng-click='removeFromCart()'>remove</button>
@@ -70,3 +73,4 @@
     </td>
 </tr>
 </table>
+</div>

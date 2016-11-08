@@ -64,7 +64,7 @@
                     <select ng-model='tea.quantity'>
                         <option ng-repeat='qty in [1,2,3,4,5,6,7,8,9,10]' value='{{qty}}' >{{qty}}</option>
                     </select>
-                    <button type='button' name='button' class='btn btn-warning' ng-click='updateCart(tea.name, tea.price, tea.imageUrl, tea.caffeineScale, tea.ingredients, tea.rating, tea.quantity)'>Add To Bag</button>
+                    <button type='button' name='button' class='btn btn-warning' ng-click='updateCart(tea, tea.quantity)'>Add To Bag</button>
                 </span>
             </h3>
             <p>
