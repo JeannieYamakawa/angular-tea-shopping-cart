@@ -44,8 +44,17 @@ describe('angular tea shopping cart app', function() {
         });
 
 
-        it('it should add at least one tea to cart if addToCart button clicked', function() {
+        fit('it should add at least one tea to cart if addToCart button clicked', function() {
             browser.get('http://localhost:8000');
+            var firstQuantity = element( by.repeater( 'tea in teas.teas' ).row(0) );
+            var secondQuantity = element( by.repeater( 'tea in teas.teas' ).row(1) );
+            var addButton = element.all(by.css('.adding')).first();
+            var secondTeaAddButton = element.all(by.css('.adding')).get(1);
+            var checkoutButton = element.all(by.css('.checkout')).first();
+
+            addButton.click();
+            secondTeaAddButton.click();
+            expect( checkoutButton.getText() ).toBe( 'Checkout | Cart: 2' );
 
             });
 
