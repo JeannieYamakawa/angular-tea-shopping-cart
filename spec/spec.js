@@ -178,6 +178,7 @@ describe('angular tea shopping cart app page two', function() {
             expect(quantities.first().getText()).toBe('9');
             expect(subtotals.first().getText()).toBe('$138.60');
             expect(overallTotal.getText()).toContain('$578.88');
+            
         });
 
 
