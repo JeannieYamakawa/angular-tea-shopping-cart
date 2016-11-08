@@ -68,10 +68,19 @@ describe('angular tea shopping cart app', function() {
             expect(teasDisplayed.get(1).getText()).toContain('purina chow, flavorings, pepper, acorns, quality tallow')
             });
 
-        it('it should display teas from the search bar', function() {
+        fit('it should display teas filtered by text in the search bar', function() {
             browser.get('http://localhost:8000');
+            var searchBar = element(by.css('.searchBar'));
+            var teasDisplayed = element.all( by.css( '.singletea' ) );
+            searchBar.sendKeys('Angular');
+            expect(teasDisplayed.count()).toBe(1);
 
-        });
+            searchBar.clear();
+            searchBar.sendKeys('cream');
+            expect(teasDisplayed.count()).toBe(4);
+            expect(teasDisplayed.get(1).getText()).toContain('Flexner veggie tea')
+            expect(teasDisplayed.get(3).getText()).toContain('cream of tartar, cream of cream, kitchen scraps, flavorings')
+            });
 
         it('it should sort teas by price, both lowest and highest', function() {
             browser.get('http://localhost:8000');
