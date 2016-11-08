@@ -1,8 +1,7 @@
 <div align='center'class='ui container'>
 
     <span >
-        <span>Search By Category:</span>
-
+        <strong>Search By Category:</strong>
         <select class="dropdown" name="dropdown" ng-model='categorySearch'>
             <option value=""  />
                     <option value="dark">Dark</option>
@@ -22,30 +21,31 @@
     <span >
         <input class='searchBar' ng-model='nameSearch' type="text" placeholder='Search teas by...'>
     </span>
-    <span class='col-xs-3'>
-
+    <span >
             <button ng-if="!numItemsInBag" ng-click="checkoutClicked()" class='btn btn-default' type='button' > Cart Is Empty.</button>
-            <button ng-if="numItemsInBag" ng-click="checkoutClicked()" class='btn btn-default' type='button' >Checkout | Cart: {{numItemsInBag}}</button>
+            <button ng-if="numItemsInBag" ng-click="checkoutClicked()" class='btn btn-success' type='button' >Checkout | Cart: {{numItemsInBag}}</button>
 
     </span>
+
+    <span class="pull-right"> <strong>Sort By Price:</strong>
+          <select ng-model="priceSort">
+                <option value='price'>Lowest</option>
+                <option value=-price>Highest</option>
+            </select>
+    </span>
+
 </div>
 
 <!-- end of header bar -->
 
 <!-- start of table -->
-<table class="table table-bordered" >
+<table class="container table table-bordered" >
     <thead>
         <tr>
-            <td>Tea</td>
+            <td><strong><h3>Tea</h3></strong></td>
 
-            <td>Information
-                <span class="pull-right"> Sort By Price:
-                      <select ng-model="priceSort">
-                            <option value='price'>Lowest</option>
-                            <option value=-price>Highest</option>
-                        </select>
-                </span>
-            </td>
+            <td><strong><h3>Information</h3></strong></td>
+
         </tr>
     </thead>
     <tbody>
@@ -54,7 +54,8 @@
         <img src="{{tea.imageUrl}}" alt="tea photo">
     </td>
     <td>
-        <h3>{{tea.name}}
+        <h2>{{tea.name}}<h2>
+            <h4>
             <span class='pull-right'>
                 Quantity:
                 <select ng-model='tea.quantity'>
@@ -62,7 +63,7 @@
                 </select>
                 <button type='button' name='button' class='btn btn-warning' ng-click='updateCart(tea, tea.quantity)'>Add To Cart</button>
             </span>
-        </h3>
+        </h4>
         <p>
             <strong>Price:</strong> {{tea.price/100 | currency}}
         </p>
