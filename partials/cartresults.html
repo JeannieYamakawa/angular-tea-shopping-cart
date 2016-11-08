@@ -1,76 +1,82 @@
 <!-- <button ng-click='consoleLog()'>click me</button> -->
-<div ng-show='cart.teas.length===0'>Your cart is empty.</div>
+<div align='center' ng-show='cart.teas.length===0'><h2>Your cart is empty.</h2></div>
 <div ng-show='cart.teas.length>0'>
+<div class='pull-right'>
+<h3><div>Your Shopping Cart:</div></h3>
+    <h4>
+        <span > Total: {{ cart.overallTotal | currency: '$'}} </span>
+        <div ng-repeat='tea in cart.teas'></div>
+    </h4>
+</div>
+<table  class="table table-bordered" align="center">
+    <thead>
+        <tr >
+            <td >
+                Product
+            </td >
 
-<div>Your Shopping Cart:</div>
-<div > Total: {{ cart.overallTotal | currency: '$'}} </div>
-<div ng-repeat='tea in cart.teas'></div>
+            <td >
 
+                <span > Quantity</span>
 
-<table  align="center">
-    <tr class='table-head'>
-        <th class='table-head margin1'>
-            Product
-        </th >
+            </td>
+            <td >
 
-        <th class='table-head '>
+                <span > Sub-total</span>
 
-            <span class='margin1'> Quantity</span>
-
-        </th>
-        <th class='table-head '>
-
-            <span class='margin1'> Sub-total</span>
-
-        </th>
-    </tr>
-<tr class = 'ui container' ng-repeat='tea in cart.teas'>
-    <td>
-        <h3>{{tea.name}}
-
-
-        </h3>
-        <img src="{{tea.imageUrl}}" alt="tea photo">
-
-        <p>
-            <div class='caffeine-selection'>
-                <h4>Caffeine Scale {{tea.caffeineScale}} </h4>
-                <!-- <caffeine-meter caffeinemg='tea.caffeineScale' id='tea._id'></caffeine-meter> -->
-            </div>
-        </p>
-        <p>
-            <strong>Ingredients:</strong>
-            {{tea.ingredients}}
-        </p>
-        <p>
-            <strong>Rating:</strong>
-            {{tea.rating}}
-        </p>
-    </td>
-    <td>
-        <p>{{tea.qty}}</p>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat='tea in cart.teas'>
+            <td>
+                <h3>{{tea.name}}
 
 
-    </td>
-    <td>
-        <p>{{tea.subtotal | currency: '$'}}</p>
+                </h3>
+                <img src="{{tea.imageUrl}}" alt="tea photo">
+
+                <p>
+                    <div class='caffeine-selection'>
+                        <h4>Caffeine Scale {{tea.caffeineScale}} </h4>
+                    </div>
+                </p>
+                <p>
+                    <strong>Ingredients:</strong>
+                    {{tea.ingredients}}
+                </p>
+                <p>
+                    <strong>Rating:</strong>
+                    {{tea.rating}}
+                </p>
+            </td>
+            <td>
+                <p>{{tea.qty}}</p>
 
 
-    </td>
-    <td>
-        <button ng-click='editClicked()'>edit</button>
+            </td>
+            <td>
+                <p>{{tea.subtotal | currency: '$'}}</p>
 
-        <span ng-show='showEdit' class='pull-right'>
-            Update Quantity:
-            <select ng-model='tea.quantity'>
-                <option ng-repeat='qty in [1,2,3,4,5,6,7,8,9,10]' value='{{qty}}' >{{qty}}</option>
-            </select>
-            <button type='button' name='button' class='btn btn-warning' ng-click='updateCart(tea, tea.quantity)'>Update Quantity</button>
-        </span>
 
-        <button ng-click='removeFromCart()'>remove</button>
+            </td>
+            <td>
+                <button ng-click='removeFromCart()'>remove</button>
 
-    </td>
-</tr>
+                <button ng-click='editClicked()'>edit</button>
+            <td>
+                <span ng-show='showEdit' class='pull-right'>
+                    Update Quantity:
+                    <select ng-model='tea.quantity'>
+                        <option ng-repeat='qty in [1,2,3,4,5,6,7,8,9,10]' value='{{qty}}' >{{qty}}</option>
+                    </select>
+                    <button type='button' name='button' class='btn btn-warning' ng-click='updateCart(tea, tea.quantity)'>Update Quantity</button>
+                </span>
+
+            </td>
+
+            </td>
+        </tr>
+</tbody>
 </table>
 </div>

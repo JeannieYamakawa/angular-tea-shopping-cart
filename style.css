@@ -13,11 +13,8 @@
 span{
     margin: 3vh;
 }
-.table-head{
-    border: 1px solid black;
-}
 td{
-    border: 1px solid black;
+    margin: 9vh;
 }
 
 $baseFontSize: 16;
@@ -33,6 +30,7 @@ $grey: #f2f2f2;
 
 .body {
   font-size: #{$baseFontSize};
+  padding: 50px;
 }
 
 .header {
@@ -53,104 +51,68 @@ h1 {
   display: flex;
 }
 
-// Gauge
+.caffeine-section {
+  text-align: center;
+  float:right;
+  border: 1px solid black;
+}
+/*Gauge*/
 .mask {
   position: relative;
   overflow: hidden;
 
   display: block;
-  width: rem(200);
-  height: rem(100);
-  margin: rem(20);
+  width: 12.5rem;
+  height: 6.25rem;
+  margin: 1.25rem;
 }
 .semi-circle {
   position: relative;
 
   display: block;
-  width: rem(200);
-  height: rem(100);
+  width: 12.5rem;
+  height: 6.25rem;
 
-  background: linear-gradient(to right, $red 0%, $yellow 50%, $green 100%);
-
+  background: linear-gradient(to right, #c0392b 0%, #f1c40f 50%, #1abc9c 100%);
   border-radius: 50% 50% 50% 50% / 100% 100% 0% 0% ;
-
-  &::before {
+}
+ .semi-circle::before {
     content: "";
-
     position: absolute;
     bottom: 0;
     left: 50%;
     z-index: 2;
-
     display: block;
-    width: rem(140);
-    height: rem(70);
-    margin-left: rem(-70);
-
+    width: 8.75rem;
+    height: 4.375rem;
+    margin-left: -4.375rem;
     background: #fff;
-
-    border-radius: 50% 50% 50% 50% / 100% 100% 0% 0% ;
-  }
+    border-radius: 50% 50% 50% 50%/100% 100% 0% 0%;
 }
 
 .semi-circle--mask {
   position: absolute;
   top: 0;
   left: 0;
-
-  width: rem(200);
-  height: rem(200);
-
+  width: 12.5rem;
+  height: 12.5rem;
   background: transparent;
-
-  transform: rotate(120deg) translate3d(0,0,0);
+  transform: rotate(0deg) translate3d(0, 0, 0);
+  text-indent: 0px;
   transform-origin: center center;
   backface-visibility: hidden;
   transition: all .3s ease-in-out;
-
-  &::before {
-    content: "";
-
-    position: absolute;
-    top: 0;
-    left: 0%;
-    z-index: 2;
-
-    display: block;
-    width: rem(202);
-    height: rem(102);
-    margin: -1px 0 0 -1px;
-
-    background: #f2f2f2;
-
-    border-radius: 50% 50% 50% 50% / 100% 100% 0% 0% ;
-  }
 }
-
-.gauge--1 {
-  .semi-circle {
-    background: $green;
-  }
-}
-
-.gauge--2 {
-  .semi-circle {
-    background: $red;
-  }
-
-  .semi-circle--mask {
-    transform: rotate(20deg) translate3d(0,0,0);
-  }
-}
-
-.btn--twitter {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-
-  padding: .5rem;
-
-  background: $blue;
-
-  color: #fff;
+.semi-circle--mask::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0%;
+  z-index: 2;
+  display: block;
+  width: 12.625rem;
+  height: 6.375rem;
+  margin: -1px 0 0 -1px;
+  background: #f2f2f2;
+  border-radius: 50% 50% 50% 50%/100% 100% 0% 0%;
 }

@@ -8,8 +8,8 @@
 // second controller accesses the values in the service ovbject, THEN in the callback actually does stuff with that info.
 
 
-app.controller('HomeController', ['$scope','$http', '$location', 'cartPersist',// 'caffeineMeter',
-function($scope, $http, $location, cartPersist // , caffeineMeter
+app.controller('HomeController', ['$scope','$http', '$location', 'cartPersist',
+function($scope, $http, $location, cartPersist
 ){
 
 
@@ -156,8 +156,8 @@ function($scope, $http, $location, cartPersist // , caffeineMeter
 
 
 
-app.controller('CartController', ['$scope','$http', '$location', 'cartPersist',// 'caffeineMeter',
-function($scope, $http, $location, cartPersist // , caffeineMeter
+app.controller('CartController', ['$scope','$http', '$location', 'cartPersist',
+function($scope, $http, $location, cartPersist
 ){
     $scope.cart = cartPersist.cart;
     $scope.cart.teas = cartPersist.cart.teas;
