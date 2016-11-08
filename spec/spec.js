@@ -178,7 +178,7 @@ describe('angular tea shopping cart app page two', function() {
             expect(quantities.first().getText()).toBe('9');
             expect(subtotals.first().getText()).toBe('$138.60');
             expect(overallTotal.getText()).toContain('$578.88');
-            
+
         });
 
 
@@ -187,12 +187,16 @@ describe('angular tea shopping cart app page two', function() {
             var removeButtons = element.all(by.css('.remove'));
             removeButtons.first().click();
             expect(teasDisplayed.count()).toBe(2);
-
         });
 
 
-        it('it should update quantity, subtotal price, and total price when item deleted from cart', function() {
-
+        fit('it should update quantity, subtotal price, and total price when item deleted from cart', function() {
+            var removeButtons = element.all(by.css('.remove'));
+            var subtotals =  element.all(by.css('.subtotal'));
+            var overallTotal = element(by.css('.overalltotal'));
+            removeButtons.first().click();
+            expect(subtotals.count()).toBe(2);
+            expect(overallTotal.getText()).toContain('$532.68')
         });
 
 });
