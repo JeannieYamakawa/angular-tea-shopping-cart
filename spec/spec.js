@@ -165,7 +165,7 @@ describe('angular tea shopping cart app page two', function() {
         });
 
 
-        fit('it should update the quantity, subtotal price, and total price when Update Quantity button clicked', function() {
+        it('it should update the quantity, subtotal price, and total price when Update Quantity button clicked', function() {
             var editButtons = element.all(by.css('.edit'));
             var updateButton = element.all(by.css('.updatebutton')).first()
             var subtotals =  element.all(by.css('.subtotal'));
@@ -181,7 +181,11 @@ describe('angular tea shopping cart app page two', function() {
         });
 
 
-        it('it should have a button that removes the tea from the cart upon click', function() {
+        fit('it should have a button that removes the tea from the cart upon click', function() {
+            var teasDisplayed = element.all(by.css('.tearepeater') );
+            var removeButtons = element.all(by.css('.remove'));
+            removeButtons.first().click();
+            expect(teasDisplayed.count()).toBe(2);
 
         });
 
