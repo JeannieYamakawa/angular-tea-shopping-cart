@@ -33,7 +33,6 @@ describe('angular tea shopping cart app', function() {
             quantityDropdown.sendKeys('6')
             addButton.click()
             expect( checkoutButton.getText() ).toBe( 'Checkout | Cart: 1' );
-
         });
 
 
@@ -44,7 +43,7 @@ describe('angular tea shopping cart app', function() {
         });
 
 
-        fit('it should add at least one tea to cart if addToCart button clicked', function() {
+        fit('it should add at least one tea to cart if addToCart button clicked with no quantity specified', function() {
             browser.get('http://localhost:8000');
             var firstQuantity = element( by.repeater( 'tea in teas.teas' ).row(0) );
             var secondQuantity = element( by.repeater( 'tea in teas.teas' ).row(1) );
@@ -59,22 +58,14 @@ describe('angular tea shopping cart app', function() {
             });
 
 
-        it('it should add correct quantity of product to cart when dropdown displays text and button clicked', function() {
+        fit('it should filter teas from chosen dropdown option', function() {
             browser.get('http://localhost:8000');
-
-            });
-
-
-
-        it('it should have checkout buttons value display quantity increase when button clicked', function() {
-            browser.get('http://localhost:8000');
-
-            });
-
-
-        it('it should filter teas from chosen dropdown option', function() {
-            browser.get('http://localhost:8000');
-
+            var categoryDropdown = element(by.css('.category'));
+            var teasDisplayed = element.all( by.css( '.singletea' ) );
+            categoryDropdown.sendKeys('awesome');
+            expect(teasDisplayed.count()).toBe(2);
+            expect(teasDisplayed.first().getText()).toContain('Incompactness syrup');
+            expect(teasDisplayed.get(1).getText()).toContain('purina chow, flavorings, pepper, acorns, quality tallow')
             });
 
         it('it should display teas from the search bar', function() {
